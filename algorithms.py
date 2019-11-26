@@ -1,5 +1,16 @@
-import Runnable
+import time
 import tools
+
+global msg
+global highlight
+global highlight2
+global last_highlight
+
+msg = "beginning sort..."
+highlight = 0
+last_highlight = 0
+highlight2 = 0
+last_highlight2 = 0
 
 
 def selection_sort(array):
@@ -10,14 +21,34 @@ def selection_sort(array):
     :param array: the input array to be sorted
     :return: the sorted input array
     """
+    global msg
+    global highlight
+    global highlight2
+    global last_highlight
+    global last_highlight2
 
-    starting_index = 0
-    while starting_index != len(array) - 1:
-        for i in range(starting_index + 1, len(array)):
-            if array[i] < array[starting_index]:
-                tools.swap(array, starting_index, i)
-        starting_index += 1
-        print(array)
+    highlight = 0
+    highlight2 = 0
+    last_highlight = 0
+    last_highlight2 = 0
+    if len(array) == 1:
+        msg = "Sorting finished!"
+        return
+
+    for i in range(len(array)):
+        tools.change_highlight2(i)
+        minVal = array[i]
+        minIdx = i
+        for j in range(i, len(array)):
+            tools.change_highlight(j)
+            if array[j] < minVal:
+                msg = f"({array[j]}) is less than the current smallest number ({minVal})"
+                minVal = array[j]
+                minIdx = j
+            yield array
+        tools.change_msg(f"swapping {array[i]} and {array[minIdx]}")
+        tools.swap(array, i, minIdx)
+        yield array
 
 
 def bubble_sort(array):
@@ -26,7 +57,6 @@ def bubble_sort(array):
     If the second element is greater than the first element, swap them.
     If the algorithm iterates through each element without a swap occurring, then the array is sorted.
     :param array: the array to be sorted
-    :return: the sorted array, using bubble sort
     """
     swap_occurred = True
 
@@ -38,48 +68,28 @@ def bubble_sort(array):
                 tools.swap(array, i, j)
                 print("swap has occurred")
                 swap_occurred = True
+            yield array
 
 
-def insertion_sort(array):
-    for i in range(1, len(array)):
-        chosen = array[i]
-        j = i - 1
-        while j >= 0 and chosen < array[j]:
-            array[j + 1] = array[j]
-            print(array)
+def insertion_sort(a):
+    """
+    In-place insertion sort.
+    :param a: array to be sorted, in place
+    """
+
+    global msg
+    global highlight
+    global highlight2
+    global last_highlight
+    global last_highlight2
+
+    for i in range(1, len(a)):
+        j = i
+        tools.change_highlight2(i)
+
+        while j > 0 and a[j] < a[j - 1]:
+            tools.swap(a, j, j - 1)
             j -= 1
-        array[j + 1] = chosen
-
-
-def merge_sort(array):
-    """
-    recursively sub-divided the input array into two halves, until each sub-array is size 1
-    then iterate and compare each element to put them back together again
-    :param array:
-    :return:
-    """
-    if len(array) > 1:
-        mid = len(array) // 2
-        L_sub = array[:mid]
-        R_sub = array[mid:]
-
-        merge_sort(L_sub)
-        merge_sort(R_sub)
-
-        i = j = k = 0
-
-        while i < len(L_sub) and j < len(R_sub):
-            if L_sub[i] < R_sub[j]:
-                array[k] = L_sub[i]
-                i += 1
-            else:
-                array[k] = R_sub[j]
-                j += 1
-            k += 1
-
-        while i < len(L_sub):
-            array[k] = L_sub[i]
-            i += 1
-        while j < len(R_sub):
-            array[k] = R_sub[j]
-            j += 1
+            tools.change_highlight(j)
+            yield a
+        tools.change_msg(f"Inserted {a[j]} between {a[j-1]} and {a[j + 1]}")

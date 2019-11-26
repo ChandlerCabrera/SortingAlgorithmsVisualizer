@@ -1,3 +1,9 @@
+import random
+import app
+import algorithms
+import time
+
+
 def swap(input_list, i, j):
     """
     :param input_list: the list in which the elements are to be swapped
@@ -5,11 +11,26 @@ def swap(input_list, i, j):
     :param j: the index of the second element to be swapped
     :return: the original list, but with the elements at each index swapped
     """
+
     temp = input_list[i]
-    print(f"swapping {input_list[i]} and {input_list[j]}")
+    # change_msg(f"swapping {input_list[i]} and {input_list[j]}")
     input_list[i] = input_list[j]
     input_list[j] = temp
     return
+
+
+def change_msg(str):
+    algorithms.msg = str
+
+
+def change_highlight(i):
+    algorithms.last_highlight = algorithms.highlight
+    algorithms.highlight = i
+
+
+def change_highlight2(i):
+    algorithms.last_highlight2 = algorithms.highlight2
+    algorithms.highlight2 = i
 
 
 def insertion_shift(arr, j):
@@ -18,3 +39,11 @@ def insertion_shift(arr, j):
     for a in range(0, j - 1):
         arr[a + 1] = arr[a]
     arr[0] = save
+
+
+def generate_random_list(n):
+    result = []
+    for i in range(1, n):
+        result.append(random.randint(1, 100))
+    print(result)
+    return result
