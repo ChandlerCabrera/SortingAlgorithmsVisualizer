@@ -19,8 +19,8 @@ def swap(input_list, i, j):
     return
 
 
-def change_msg(str):
-    algorithms.msg = str
+def change_msg(string):
+    algorithms.msg = string
 
 
 def change_highlight(i):
@@ -43,7 +43,7 @@ def insertion_shift(arr, j):
 
 def generate_random_list(n):
     result = []
-    for i in range(1, n):
+    for i in range(0, n):
         result.append(random.randint(1, 100))
     print(result)
     return result

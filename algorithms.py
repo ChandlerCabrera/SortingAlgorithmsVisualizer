@@ -93,3 +93,4 @@ def insertion_sort(a):
             tools.change_highlight(j)
             yield a
         tools.change_msg(f"Inserted {a[j]} between {a[j-1]} and {a[j + 1]}")
+    tools.change_msg(f"Finished sorting {len(a)} elements using Insertion Sort")
