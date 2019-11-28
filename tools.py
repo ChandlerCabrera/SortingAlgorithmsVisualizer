@@ -42,9 +42,18 @@ def add_highlight_list(i):
     algorithms.list_highlight.append(i)
 
 
+def add_highlight_list2(i):
+    algorithms.list_highlight2.append(i)
+
+
 def clear_highlight_list():
     algorithms.list_recolour = algorithms.list_highlight
     algorithms.list_highlight = []
+
+
+def clear_highlight_list2():
+    algorithms.list_recolour2 = algorithms.list_highlight2
+    algorithms.list_highlight2 = []
 
 
 def insertion_shift(arr, j):

@@ -18,7 +18,7 @@ if __name__ == "__main__":
         [sg.Text("Sorting Speed                "), sg.Slider(range=(1, 100), default_value=50, size=(20, 15),
                                                              orientation='horizontal', font=('Helvetica', 12))],
 
-        [sg.OK()]
+        [sg.OK(), sg.Button("Study Mode")]
     ]
 
     # Drawing GUI window
@@ -31,12 +31,14 @@ if __name__ == "__main__":
     window.close()
 
     # for debugging and implementation
-    # print(button)
+    #print(button)
     # print(values)
 
+    if button == "Study Mode":
+        algorithms.delay = 1
+    else:
+        algorithms.delay = 0
     # reading information from GUI
-    print(values)
-    print(len(values))
     size = int(values[len(values)-2])
     a = tools.generate_random_list(size)
     sorting_speed = int(105 - values[len(values)-1])
@@ -57,7 +59,7 @@ if __name__ == "__main__":
     fig, ax = plt.subplots()
     ax.set_title(title)
     bar_rects = ax.bar(range(len(a)), a, align="edge", color="#61b0ff")
-    ax.set_xlim(1, size)
+    ax.set_xlim(0, size)
     ax.set_ylim(0, 100)
     text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
 
@@ -89,6 +91,9 @@ if __name__ == "__main__":
 
         list_recolour = algorithms.list_recolour
         list_highlight = algorithms.list_highlight
+
+        list_recolour2 = algorithms.list_recolour2
+        list_highlight2 = algorithms.list_highlight2
         counter = 0
 
         for rect, val in zip(rects, A):
@@ -99,11 +104,13 @@ if __name__ == "__main__":
                 rect.set_color("#03fc2c")
             elif counter == highlight3:
                 rect.set_color('#fbff00')
-            elif counter == last_highlight or counter == last_highlight2:
+            elif counter == last_highlight or counter == last_highlight2 or counter == last_highlight3:
                 rect.set_color("#61b0ff")
             elif counter in list_highlight:
                 rect.set_color("#d900ff")
-            elif counter in list_recolour:
+            elif counter in list_highlight2:
+                rect.set_color('b')
+            elif counter in list_recolour or list_recolour2:
                 rect.set_color("#61b0ff")
 
             counter += 1
