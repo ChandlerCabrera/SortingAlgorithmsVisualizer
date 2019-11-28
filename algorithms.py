@@ -5,12 +5,17 @@ global msg
 global highlight
 global highlight2
 global last_highlight
+global last_highlight2
+global highlight3
+global last_highlight3
 
 msg = "beginning sort..."
 highlight = 0
 last_highlight = 0
 highlight2 = 0
 last_highlight2 = 0
+highlight3 = 0
+last_highlight3 = 0
 
 
 def selection_sort(array):
@@ -58,17 +63,40 @@ def bubble_sort(array):
     If the algorithm iterates through each element without a swap occurring, then the array is sorted.
     :param array: the array to be sorted
     """
-    swap_occurred = True
 
-    while swap_occurred:
-        swap_occurred = False
-        for i in array[0:len(array) - 1]:
-            j = array[i + 1]
-            if i > j:
-                tools.swap(array, i, j)
-                print("swap has occurred")
-                swap_occurred = True
-            yield array
+    global msg
+    global highlight
+    global highlight2
+    global last_highlight
+    global last_highlight2
+    global highlight3
+    global last_highlight3
+
+    highlight = 0
+    highlight2 = 0
+    last_highlight = 0
+    last_highlight2 = 0
+
+    n = len(array)
+    swapped = True
+    x = -1
+    iteration = 0
+
+    while swapped:
+        swapped = False
+
+        iteration += 1
+        x = x + 1
+
+        for i in range(1, n - x):
+            if array[i - 1] > array[i]:
+                tools.swap(array, i - 1, i)
+                swapped = True
+                tools.change_msg(f"Iteration ({iteration}). Red Bar: {array[i]}")
+                tools.change_highlight(i)
+                tools.change_highlight2(n - x)
+
+                yield array
 
 
 def insertion_sort(a):
@@ -92,4 +120,56 @@ def insertion_sort(a):
             j -= 1
             tools.change_highlight(j)
             yield a
-        tools.change_msg(f"Inserted {a[j]} between {a[j-1]} and {a[j + 1]}")
+        tools.change_msg(f"Inserted {a[j]} between {a[j - 1]} and {a[j + 1]}")
+
+
+def merge_sort(xs):
+    """Inplace merge sort of array without recursive. The basic idea
+    is to avoid the recursive call while using iterative solution.
+    The algorithm first merge chunk of length of 2, then merge chunks
+    of length 4, then 8, 16, .... , until 2^k where 2^k is large than
+    the length of the array
+    """
+
+    global msg
+    global highlight
+    global highlight2
+    global last_highlight
+    global last_highlight2
+    global highlight3
+    global last_highlight3
+
+    highlight = 0
+    highlight2 = 0
+    highlight3 = 0
+    last_highlight = 0
+    last_highlight2 = 0
+    last_highlight3 = 0
+
+    unit = 1
+    while unit <= len(xs):
+        h = 0
+        for h in range(0, len(xs), unit * 2):
+            l, r = h, min(len(xs), h + 2 * unit)
+            mid = h + unit
+            # merge xs[h:h + 2 * unit]
+            p, q = l, mid
+            while p < mid and q < r:
+                # use <= for stable merge merge
+                if xs[p] <= xs[q]:
+                    p += 1
+                    tools.change_highlight(mid-1)
+                    tools.change_highlight2(h+1)
+                    yield xs
+                else:
+                    tmp = xs[q]
+                    xs[p + 1: q + 1] = xs[p:q]
+                    xs[p] = tmp
+                    p, mid, q = p + 1, mid + 1, q + 1
+                    tools.change_highlight(mid-1)
+                    tools.change_highlight2(h+1)
+                    yield xs
+
+        unit *= 2
+
+    return xs

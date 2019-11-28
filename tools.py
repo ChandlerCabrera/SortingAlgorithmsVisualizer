@@ -33,6 +33,11 @@ def change_highlight2(i):
     algorithms.highlight2 = i
 
 
+def change_highlight3(i):
+    algorithms.last_highlight3 = algorithms.highlight3
+    algorithms.highlight3 = i
+
+
 def insertion_shift(arr, j):
     save = arr[j]
     print(f"saving value: {save}")

@@ -10,11 +10,14 @@ if __name__ == "__main__":
     # Setting layout of GUI element
     layout = [
         [sg.Text("Which sorting algorithm would you like to use?")],
-        [sg.Radio("Selection Sort", "selection_sort"), sg.Radio("Insertion Sort", "insertion_sort")],
+        [sg.Radio("Selection Sort", "selection_sort"), sg.Radio("Insertion Sort", "insertion_sort"),
+         sg.Radio("Bubble Sort", "bubble_sort"), sg.Radio("Merge Sort", "merge_sort")],
+
         [sg.Text("Size of array to be sorted"), sg.Slider(range=(1, 100), default_value=50, size=(20, 15),
                                                           orientation='horizontal', font=('Helvetica', 12))],
         [sg.Text("Sorting Speed                "), sg.Slider(range=(1, 100), default_value=50, size=(20, 15),
                                                              orientation='horizontal', font=('Helvetica', 12))],
+
         [sg.OK()]
     ]
 
@@ -32,15 +35,23 @@ if __name__ == "__main__":
     # print(values)
 
     # reading information from GUI
-    size = int(values[2])
+    print(values)
+    print(len(values))
+    size = int(values[len(values)-2])
     a = tools.generate_random_list(size)
-    sorting_speed = int(105 - values[3])
+    sorting_speed = int(105 - values[len(values)-1])
     if values[0]:
         generator = algorithms.selection_sort(a)
         title = f"Selection Sort of {size} numbers"
     elif values[1]:
         generator = algorithms.insertion_sort(a)
         title = f"Insertion Sort of {size} numbers"
+    elif values[2]:
+        generator = algorithms.bubble_sort(a)
+        title = f"Bubble Sort of {size} numbers"
+    elif values[3]:
+        generator = algorithms.merge_sort(a)
+        title = f"Merge Sort of {size} numbers"
 
     # Generating bar graph
     fig, ax = plt.subplots()
@@ -66,11 +77,15 @@ if __name__ == "__main__":
         :param rects: rectangles
         :param i: literally no idea what i is
         """
+        message = algorithms.msg
+
         highlight = algorithms.highlight
         highlight2 = algorithms.highlight2
-        message = algorithms.msg
+        highlight3 = algorithms.highlight3
+
         last_highlight = algorithms.last_highlight
         last_highlight2 = algorithms.last_highlight2
+        last_highlight3 = algorithms.last_highlight3
         counter = 0
 
         for rect, val in zip(rects, A):
@@ -79,6 +94,8 @@ if __name__ == "__main__":
                 rect.set_color('r')
             elif counter == highlight2:
                 rect.set_color("#03fc2c")
+            elif counter == highlight3:
+                rect.set_color('#fbff00')
             elif counter == last_highlight or counter == last_highlight2:
                 rect.set_color("#61b0ff")
             counter += 1
