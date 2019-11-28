@@ -86,6 +86,9 @@ if __name__ == "__main__":
         last_highlight = algorithms.last_highlight
         last_highlight2 = algorithms.last_highlight2
         last_highlight3 = algorithms.last_highlight3
+
+        list_recolour = algorithms.list_recolour
+        list_highlight = algorithms.list_highlight
         counter = 0
 
         for rect, val in zip(rects, A):
@@ -98,6 +101,11 @@ if __name__ == "__main__":
                 rect.set_color('#fbff00')
             elif counter == last_highlight or counter == last_highlight2:
                 rect.set_color("#61b0ff")
+            elif counter in list_highlight:
+                rect.set_color("#d900ff")
+            elif counter in list_recolour:
+                rect.set_color("#61b0ff")
+
             counter += 1
         i[0] += 1
         text.set_text(message)

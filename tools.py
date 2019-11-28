@@ -38,6 +38,15 @@ def change_highlight3(i):
     algorithms.highlight3 = i
 
 
+def add_highlight_list(i):
+    algorithms.list_highlight.append(i)
+
+
+def clear_highlight_list():
+    algorithms.list_recolour = algorithms.list_highlight
+    algorithms.list_highlight = []
+
+
 def insertion_shift(arr, j):
     save = arr[j]
     print(f"saving value: {save}")

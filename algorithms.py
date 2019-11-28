@@ -17,6 +17,9 @@ last_highlight2 = 0
 highlight3 = 0
 last_highlight3 = 0
 
+list_recolour = []
+list_highlight = []
+
 
 def selection_sort(array):
     """
@@ -136,15 +139,16 @@ def merge_sort(xs):
     global highlight2
     global last_highlight
     global last_highlight2
-    global highlight3
-    global last_highlight3
+    global list_highlight
 
     highlight = 0
     highlight2 = 0
-    highlight3 = 0
+
     last_highlight = 0
     last_highlight2 = 0
-    last_highlight3 = 0
+
+    list_highlight = []
+
 
     unit = 1
     while unit <= len(xs):
@@ -158,17 +162,21 @@ def merge_sort(xs):
                 # use <= for stable merge merge
                 if xs[p] <= xs[q]:
                     p += 1
-                    tools.change_highlight(mid-1)
-                    tools.change_highlight2(h+1)
+                    for y in range(h, mid):
+                        tools.add_highlight_list(y)
+                    tools.change_msg(f"Sorting chunks of array of size {unit*2}, between indexes {h} and {mid}")
                     yield xs
+                    tools.clear_highlight_list()
                 else:
                     tmp = xs[q]
                     xs[p + 1: q + 1] = xs[p:q]
                     xs[p] = tmp
                     p, mid, q = p + 1, mid + 1, q + 1
-                    tools.change_highlight(mid-1)
-                    tools.change_highlight2(h+1)
+                    for y in range(h, mid):
+                        tools.add_highlight_list(y)
+                    tools.change_msg(f"Sorting elements in sub-array of size {unit*2}, between indexes {h} and {mid}")
                     yield xs
+                    tools.clear_highlight_list()
 
         unit *= 2
 
