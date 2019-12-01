@@ -8,17 +8,12 @@ import PySimpleGUI as sg
 if __name__ == "__main__":
 
     # Setting layout of GUI element
+
     layout = [
-        [sg.Text("Which sorting algorithm would you like to use?")],
-        [sg.Radio("Selection Sort", "selection_sort"), sg.Radio("Insertion Sort", "insertion_sort"),
-         sg.Radio("Bubble Sort", "bubble_sort"), sg.Radio("Merge Sort", "merge_sort")],
-
-        [sg.Text("Size of array to be sorted"), sg.Slider(range=(1, 100), default_value=50, size=(20, 15),
-                                                          orientation='horizontal', font=('Helvetica', 12))],
-        [sg.Text("Sorting Speed                "), sg.Slider(range=(1, 100), default_value=50, size=(20, 15),
-                                                             orientation='horizontal', font=('Helvetica', 12))],
-
-        [sg.OK(), sg.Button("Study Mode")]
+        [sg.Text("Sorting Speed "), sg.Slider(range=(1, 100), default_value=50, size=(20,15), orientation='horizontal')],
+        [sg.Text("Array size    "), sg.Slider(range=(1, 100), default_value=50, size=(20,15), orientation='horizontal')],
+        [sg.Button("Bubble Sort"), sg.Button("Insertion Sort"), sg.Button("Merge Sort"), sg.Button("Selection Sort")],
+        [sg.Radio("Study Mode", "study_mode")]
     ]
 
     # Drawing GUI window
@@ -30,28 +25,28 @@ if __name__ == "__main__":
     # closing window on OK
     window.close()
 
-    # for debugging and implementation
-    #print(button)
+    # # for debugging and implementation
+    # print(button)
     # print(values)
 
-    if button == "Study Mode":
-        algorithms.delay = 1
-    else:
-        algorithms.delay = 0
+    sorting_method = button
+
+    algorithms.delay = 1 if values[len(values)-1] else 0
+
     # reading information from GUI
     size = int(values[len(values)-2])
     a = tools.generate_random_list(size)
-    sorting_speed = int(105 - values[len(values)-1])
-    if values[0]:
+    sorting_speed = int(105 - values[len(values)-3])
+    if sorting_method == "Selection Sort":
         generator = algorithms.selection_sort(a)
         title = f"Selection Sort of {size} numbers"
-    elif values[1]:
+    elif sorting_method == "Insertion Sort":
         generator = algorithms.insertion_sort(a)
         title = f"Insertion Sort of {size} numbers"
-    elif values[2]:
+    elif sorting_method == "Bubble Sort":
         generator = algorithms.bubble_sort(a)
         title = f"Bubble Sort of {size} numbers"
-    elif values[3]:
+    elif sorting_method == "Merge Sort":
         generator = algorithms.merge_sort(a)
         title = f"Merge Sort of {size} numbers"
 
