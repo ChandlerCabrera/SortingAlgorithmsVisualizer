@@ -169,7 +169,7 @@ def merge_sort(xs):
                         tools.add_highlight_list(y)
                     for y in range(h, h + unit * 2):
                         tools.add_highlight_list2(y)
-                    tools.change_msg(f"Sorting chunks of array of size {unit * 2}, between indexes {h} and {mid - 1}")
+                    tools.change_msg(f"Sorting chunks of size {unit * 2}, between indexes {h} and {mid - 1}")
                     yield xs
                     time.sleep(delay)
                     tools.clear_highlight_list()
@@ -185,7 +185,7 @@ def merge_sort(xs):
                     for y in range(h, h + unit * 2):
                         tools.add_highlight_list2(y)
                     tools.change_msg(
-                        f"Sorting elements in sub-array of size {unit * 2}, between indexes {h} and {mid - 1}")
+                        f"Sorting chunks of size {unit * 2}, between indexes {h} and {mid - 1}")
                     yield xs
                     time.sleep(delay)
                     tools.clear_highlight_list()
