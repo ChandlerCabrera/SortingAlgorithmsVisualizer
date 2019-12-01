@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sorting Algorithm Visualizer
 
 This project was done to accomplish two things:
@@ -35,3 +36,9 @@ Alternatively, you can double-click the executable found in the dist folder.
 
 * **Chandler Cabrera** 
 
+=======
+# SortingAlgorithmsVisualizer
+
+This sorting visualizer app is a personal project I'm doing to learn Python, as well as refresh my knowledge of Sorting Algorithms.
+This app is still a work in progress.
+>>>>>>> Added exit() on "x-ing" of the GUI window
