@@ -29,7 +29,7 @@ Run the script by using:
 python app.py
 ```
 
-![Demo](SAV_demo.gif)
+![](giphy.gif)
 
 Alternatively, you can double-click the executable found in the dist folder.
 
