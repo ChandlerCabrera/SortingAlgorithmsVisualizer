@@ -144,7 +144,7 @@ if __name__ == "__main__":
     if button is None:
         exit()
 
-    # closing window on OK
+    # closing window on OK!!!
     window.close()
 
     # # for debugging and implementation
