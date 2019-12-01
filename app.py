@@ -23,6 +23,9 @@ if __name__ == "__main__":
     # parsing information from GUI
     button, values = window.Read()
 
+    if button is None:
+        exit()
+
     # closing window on OK
     window.close()
 
