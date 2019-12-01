@@ -29,7 +29,7 @@ Run the script by using:
 python app.py
 ```
 
-![](gif_mergesort.gif)
+![Demo](gif_mergesort.gif)
 
 Alternatively, you can double-click the executable found in the dist folder.
 
