@@ -11,7 +11,7 @@ This app 'visualizes' sorting algorithms by representing the array as a bar grap
 Please ensure you have Python 3+ installed (https://www.python.org/downloads/).
 
 
-### Dependencies
+### Installation
 
 1. First, download this project by using the green button, "Clone or download" at the top-right portion of the page.
 
@@ -22,10 +22,14 @@ Please ensure you have Python 3+ installed (https://www.python.org/downloads/).
 pip install -r requirements.txt
 ```
 
-4. Run the script by using:
+### Running the program
+
+Run the script by using:
 ```
 python app.py
 ```
+
+![](gif_mergesort.gif)
 
 Alternatively, you can double-click the executable found in the dist folder.
 
