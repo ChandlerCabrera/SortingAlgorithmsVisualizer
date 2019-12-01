@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     layout = [
         [sg.Text("Sorting Speed "), sg.Slider(range=(1, 100), default_value=50, size=(20,15), orientation='horizontal')],
-        [sg.Text("Array size    "), sg.Slider(range=(1, 100), default_value=50, size=(20,15), orientation='horizontal')],
+        [sg.Text("Array size       "), sg.Slider(range=(1, 100), default_value=50, size=(20,15), orientation='horizontal')],
         [sg.Button("Bubble Sort"), sg.Button("Insertion Sort"), sg.Button("Merge Sort"), sg.Button("Selection Sort")],
         [sg.Radio("Study Mode", "study_mode")]
     ]
