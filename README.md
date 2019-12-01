@@ -30,11 +30,8 @@ python app.py
 Alternatively, you can double-click the executable found in the dist folder.
 
 
-End with an example of getting some data out of the system or using it for a little demo
 
-
-
-## Authors
+## Author
 
 * **Chandler Cabrera** 
 
