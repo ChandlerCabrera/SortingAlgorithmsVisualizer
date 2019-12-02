@@ -58,7 +58,6 @@ def clear_highlight_list2():
 
 def insertion_shift(arr, j):
     save = arr [j]
-    print(f"saving value: {save}")
     for a in range(0, j - 1):
         arr [a + 1] = arr [a]
     arr [0] = save
