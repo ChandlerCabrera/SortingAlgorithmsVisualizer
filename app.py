@@ -43,16 +43,16 @@ if __name__ == "__main__":
     sorting_speed = int(105 - values[len(values)-3])
     if sorting_method == "Selection Sort":
         generator = algorithms.selection_sort(a)
-        title = f"Selection Sort of {size} numbers"
+        title = "Selection Sort of {} numbers".format(size)
     elif sorting_method == "Insertion Sort":
         generator = algorithms.insertion_sort(a)
-        title = f"Insertion Sort of {size} numbers"
+        title = "Insertion Sort of {} numbers".format(size)
     elif sorting_method == "Bubble Sort":
         generator = algorithms.bubble_sort(a)
-        title = f"Bubble Sort of {size} numbers"
+        title = "Bubble Sort of {} numbers".format(size)
     elif sorting_method == "Merge Sort":
         generator = algorithms.merge_sort(a)
-        title = f"Merge Sort of {size} numbers"
+        title = "Merge Sort of {} numbers".format(size)
 
     # Generating bar graph
     fig, ax = plt.subplots()
