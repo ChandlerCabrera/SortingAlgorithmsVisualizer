@@ -41,18 +41,18 @@ def selection_sort(array):
 
     for i in range(len(array)):
         tools.change_highlight2(i)
-        minVal = array[i]
+        minVal = array [i]
         minIdx = i
         for j in range(i, len(array)):
             tools.change_highlight(j)
-            if array[j] < minVal:
-                msg = f"({array[j]}) is less than the current smallest number ({minVal})"
-                minVal = array[j]
+            if array [j] < minVal:
+                msg = "({}) is less than the current smallest number ({})".format(array [j], minVal)
+                minVal = array [j]
                 minIdx = j
                 tools.add_highlight_list(minIdx)
             yield array
         time.sleep(delay)
-        tools.change_msg(f"swapping {array[i]} and {array[minIdx]}")
+        tools.change_msg("swapping {} and {}".format(array [i], array [minIdx]))
         tools.swap(array, i, minIdx)
         time.sleep(delay)
         yield array
@@ -92,17 +92,16 @@ def bubble_sort(array):
         x = x + 1
 
         for i in range(1, n - x):
-            if array[i - 1] > array[i]:
+            if array [i - 1] > array [i]:
                 time.sleep(delay)
                 tools.change_highlight(i)
                 tools.swap(array, i - 1, i)
                 swapped = True
-                tools.change_msg(f"Iteration ({iteration}). Largest: {array[i]}")
+                tools.change_msg("Iteration ({}). Largest: {}".format(iteration, array [i]))
                 tools.add_highlight_list(n - x)
                 yield array
     tools.clear_highlight_list()
     tools.clear_highlight_list2()
-
 
 
 def insertion_sort(a):
@@ -122,13 +121,12 @@ def insertion_sort(a):
         tools.change_highlight2(i)
         time.sleep(delay)
 
-        while j > 0 and a[j] < a[j - 1]:
+        while j > 0 and a [j] < a [j - 1]:
             tools.swap(a, j, j - 1)
             j -= 1
             tools.change_highlight(j)
             yield a
-            tools.change_msg(f"Inserted {a[j]} in front of {a[j - 1]}")
-
+            tools.change_msg("Inserted {} in front of {}".format(a[j], a[j-1]))
 
 
 def merge_sort(xs):
@@ -159,28 +157,30 @@ def merge_sort(xs):
             p, q = l, mid
             while p < mid and q < r:
                 # use <= for stable merge merge
-                if xs[p] <= xs[q]:
+                if xs [p] <= xs [q]:
                     p += 1
                     for y in range(p, mid):
                         tools.add_highlight_list(y)
                     for y in range(h, h + unit * 2):
                         tools.add_highlight_list2(y)
-                    tools.change_msg("Sorting chunks of size {}, between indexes {} and {}".format(unit*2, h, h+unit*2))
+                    tools.change_msg(
+                        "Sorting chunks of size {}, between indexes {} and {}".format(unit * 2, h, h + unit * 2))
                     yield xs
                     time.sleep(delay)
                     tools.clear_highlight_list()
                     tools.clear_highlight_list2()
                 else:
-                    tmp = xs[q]
-                    xs[p + 1: q + 1] = xs[p:q]
-                    xs[p] = tmp
+                    tmp = xs [q]
+                    xs [p + 1: q + 1] = xs [p:q]
+                    xs [p] = tmp
                     p, mid, q = p + 1, mid + 1, q + 1
 
                     for y in range(p, mid):
                         tools.add_highlight_list(y)
                     for y in range(h, h + unit * 2):
                         tools.add_highlight_list2(y)
-                    tools.change_msg("Sorting chunks of size {}, between indexes {} and {}".format(unit*2, h, h+unit*2))
+                    tools.change_msg(
+                        "Sorting chunks of size {}, between indexes {} and {}".format(unit * 2, h, h + unit * 2))
                     yield xs
                     time.sleep(delay)
                     tools.clear_highlight_list()
