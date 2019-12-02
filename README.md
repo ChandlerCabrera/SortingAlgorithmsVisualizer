@@ -31,8 +31,6 @@ python app.py
 
 ![](media/giphy.gif)
 
-Alternatively, you can double-click the executable found in the dist folder.
-
 
 
 ## Author
