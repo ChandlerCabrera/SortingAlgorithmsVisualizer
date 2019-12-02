@@ -13,7 +13,6 @@ def swap(input_list, i, j):
     """
 
     temp = input_list [i]
-    # change_msg(f"swapping {input_list[i]} and {input_list[j]}")
     input_list [i] = input_list [j]
     input_list [j] = temp
     return
