@@ -132,11 +132,7 @@ def insertion_sort(a):
 
 
 def merge_sort(xs):
-    """Inplace merge sort of array without recursive. The basic idea
-    is to avoid the recursive call while using iterative solution.
-    The algorithm first merge chunk of length of 2, then merge chunks
-    of length 4, then 8, 16, .... , until 2^k where 2^k is large than
-    the length of the array
+    """Inplace merge sort lifted from github user m00nlight, modified to work within this visualizer
     """
 
     global msg
